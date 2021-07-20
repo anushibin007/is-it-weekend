@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Form } from "react-bootstrap";
+import { Container, Row, Form, Col } from "react-bootstrap";
 import "./App.css";
 import Timer from "./components/Timer";
 
@@ -13,14 +13,18 @@ function App() {
 	return (
 		<Container>
 			<Row className="align-items-center" style={{ height: "100vh" }}>
-				<Form.Group controlId="formBasicSelect">
-					<Form.Label>Your weekend starts on:</Form.Label>
-					<Form.Control as="select" value={dayOfTheWeek} onChange={handleDayOfTheWeekChanged}>
-						<option value="6">Saturday</option>
-						<option value="0">Sunday</option>
-						<option value="5">Friday</option>
-					</Form.Control>
-				</Form.Group>
+				<Row>
+					<Col>
+						<Form.Group controlId="formBasicSelect">
+							<Form.Label>Your weekend starts on:</Form.Label>
+							<Form.Control as="select" value={dayOfTheWeek} onChange={handleDayOfTheWeekChanged}>
+								<option value="6">Saturday</option>
+								<option value="0">Sunday</option>
+								<option value="5">Friday</option>
+							</Form.Control>
+						</Form.Group>
+					</Col>
+				</Row>
 				<Timer dayOfTheWeek={dayOfTheWeek} />
 			</Row>
 		</Container>
