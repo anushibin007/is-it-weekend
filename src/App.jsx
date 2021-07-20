@@ -13,7 +13,7 @@ function App() {
 		} catch (err) {
 			// Ignore the error. Simply send the default dayOfTheWeek
 		}
-		return 6; // Saturday is the default
+		return 5; // Friday is the default
 	};
 
 	const [dayOfTheWeek, setDayOfTheWeek] = useState(loadDayOfTheWeek());
