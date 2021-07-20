@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import "./App.css";
 import dayjs from "dayjs";
 
@@ -49,12 +49,34 @@ function App() {
 	};
 
 	return (
-		<Container>
-			<h1 id="nextWeekend">Next weekend is on: {weekendData.nextWeekend && weekendData.nextWeekend.toLocaleString()}</h1>
-			<h1>Days till next weekend: {weekendData.timeTillNextWeekendDays}</h1>
-			<h1>Hours till next weekend: {weekendData.timeTillNextWeekendHours}</h1>
-			<h1>Minutes till next weekend: {weekendData.timeTillNextWeekendMinutes}</h1>
-			<h1>Seconds till next weekend: {weekendData.timeTillNextWeekendSeconds}</h1>
+		<Container className="fill">
+			<Row className="align-items-center" style={{ height: "100vh" }}>
+				<Row>
+					<Col className="align-self-center">
+						<h1 id="nextWeekend">Next weekend is on: {weekendData.nextWeekend && weekendData.nextWeekend.toLocaleString()}</h1>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<h1>Days till next weekend: {weekendData.timeTillNextWeekendDays}</h1>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<h1>Hours till next weekend: {weekendData.timeTillNextWeekendHours}</h1>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<h1>Minutes till next weekend: {weekendData.timeTillNextWeekendMinutes}</h1>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<h1>Seconds till next weekend: {weekendData.timeTillNextWeekendSeconds}</h1>
+					</Col>
+				</Row>
+			</Row>
 		</Container>
 	);
 }
