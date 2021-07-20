@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, ProgressBar, Row } from "react-bootstrap";
 import dayjs from "dayjs";
 import Firebase from "../Firebase";
 
@@ -7,6 +7,7 @@ const Timer = (props) => {
 	const [weekendData, setWeekendData] = useState({});
 
 	let dayOfTheWeek = props.dayOfTheWeek;
+	const [progressPercentage, setProgressPercentage] = useState(0);
 
 	useEffect(() => {
 		Firebase.init();
@@ -19,6 +20,11 @@ const Timer = (props) => {
 		}, 1000);
 		return () => clearInterval(interval);
 	}, [props.dayOfTheWeek]);
+
+	useEffect(() => {
+		const localProgressPercentage = parseInt(((604800 - weekendData.timeTillNextWeekendSeconds) / 604800) * 100);
+		setProgressPercentage(localProgressPercentage);
+	}, [weekendData]);
 
 	const populateWeekendData = () => {
 		const nextWeekend = nextDate(dayOfTheWeek);
@@ -82,6 +88,7 @@ const Timer = (props) => {
 				<Col>
 					<h1 className="secondsRemaining line1">Seconds till next weekend:</h1>
 					<h1 className="secondsRemaining line2">{weekendData.timeTillNextWeekendSeconds}</h1>
+					<ProgressBar animated now={progressPercentage} label={`${progressPercentage}%`} />
 				</Col>
 			</Row>
 		</React.Fragment>
