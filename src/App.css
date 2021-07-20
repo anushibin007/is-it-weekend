@@ -6,6 +6,14 @@ h1 {
 	text-align: center;
 }
 
+.line1 {
+	color: goldenrod;
+}
+
+.line2 {
+	color: yellowgreen;
+}
+
 /* .weekendNext {
 	color: #ec3d66;
 }

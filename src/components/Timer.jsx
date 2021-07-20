@@ -56,32 +56,32 @@ const Timer = (props) => {
 		<React.Fragment>
 			<Row>
 				<Col>
-					<h1 className="weekendNext">Next weekend is on:</h1>
-					<h1 className="weekendNext">{weekendData.nextWeekend && weekendData.nextWeekend.toLocaleString()}</h1>
+					<h1 className="weekendNext line1">Next weekend is on:</h1>
+					<h1 className="weekendNext line2">{weekendData.nextWeekend && weekendData.nextWeekend.toLocaleString()}</h1>
 				</Col>
 			</Row>
 			<Row>
 				<Col>
-					<h1 className="daysRemaining">Days till next weekend:</h1>
-					<h1 className="daysRemaining">{weekendData.timeTillNextWeekendDays}</h1>
+					<h1 className="daysRemaining line1">Days till next weekend:</h1>
+					<h1 className="daysRemaining line2">{weekendData.timeTillNextWeekendDays}</h1>
 				</Col>
 			</Row>
 			<Row>
 				<Col>
-					<h1 className="hoursRemaining">Hours till next weekend:</h1>
-					<h1 className="hoursRemaining">{weekendData.timeTillNextWeekendHours}</h1>
+					<h1 className="hoursRemaining line1">Hours till next weekend:</h1>
+					<h1 className="hoursRemaining line2">{weekendData.timeTillNextWeekendHours}</h1>
 				</Col>
 			</Row>
 			<Row>
 				<Col>
-					<h1 className="minutesRemaining">Minutes till next weekend:</h1>
-					<h1 className="minutesRemaining">{weekendData.timeTillNextWeekendMinutes}</h1>
+					<h1 className="minutesRemaining line1">Minutes till next weekend:</h1>
+					<h1 className="minutesRemaining line2">{weekendData.timeTillNextWeekendMinutes}</h1>
 				</Col>
 			</Row>
 			<Row>
 				<Col>
-					<h1 className="secondsRemaining">Seconds till next weekend:</h1>
-					<h1 className="secondsRemaining">{weekendData.timeTillNextWeekendSeconds}</h1>
+					<h1 className="secondsRemaining line1">Seconds till next weekend:</h1>
+					<h1 className="secondsRemaining line2">{weekendData.timeTillNextWeekendSeconds}</h1>
 				</Col>
 			</Row>
 		</React.Fragment>
