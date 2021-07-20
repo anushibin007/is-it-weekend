@@ -1,84 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Row, Form } from "react-bootstrap";
 import "./App.css";
-import dayjs from "dayjs";
-import Firebase from "./Firebase";
+import Timer from "./components/Timer";
 
 function App() {
-	const [weekendData, setWeekendData] = useState({});
+	const [dayOfTheWeek, setDayOfTheWeek] = useState(6);
 
-	// Saturday
-	const dayOfTheWeek = 6;
-
-	useEffect(() => {
-		setTimeTillNextWeekend();
-		Firebase.init();
-	}, []);
-
-	useEffect(() => {
-		// console.log(weekendData);
-	}, [weekendData]);
-
-	const setTimeTillNextWeekend = () => {
-		setInterval(() => {
-			const nextWeekend = nextDate(dayOfTheWeek);
-
-			const now = new Date();
-
-			const nowInDayjs = dayjs(now).second(now.getSeconds());
-
-			const nextWeekendInDayjs = dayjs(nextWeekend);
-
-			const timeTillNextWeekendMs = nextWeekendInDayjs.diff(nowInDayjs);
-
-			const timeTillNextWeekendDays = nextWeekendInDayjs.diff(nowInDayjs, "days");
-
-			const timeTillNextWeekendHours = nextWeekendInDayjs.diff(nowInDayjs, "hours");
-
-			const timeTillNextWeekendMinutes = nextWeekendInDayjs.diff(nowInDayjs, "minutes");
-
-			const timeTillNextWeekendSeconds = nextWeekendInDayjs.diff(nowInDayjs, "seconds");
-
-			setWeekendData({ nextWeekend, timeTillNextWeekendMs, timeTillNextWeekendDays, timeTillNextWeekendHours, timeTillNextWeekendMinutes, timeTillNextWeekendSeconds });
-		}, 1000);
-	};
-
-	const nextDate = (dayIndex) => {
-		var today = new Date();
-		today.setDate(today.getDate() + ((dayIndex - 1 - today.getDay() + 7) % 7) + 1);
-		today.setHours(17, 30, 0, 0);
-		return today;
+	const handleDayOfTheWeekChanged = (e) => {
+		setDayOfTheWeek(e.target.value);
 	};
 
 	return (
-		<Container className="fill">
+		<Container>
 			<Row className="align-items-center" style={{ height: "100vh" }}>
-				<Row>
-					<Col>
-						<h1>Next weekend is on:</h1>
-						<h1>{weekendData.nextWeekend && weekendData.nextWeekend.toLocaleString()}</h1>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<h1>Days till next weekend: {weekendData.timeTillNextWeekendDays}</h1>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<h1>Hours till next weekend: {weekendData.timeTillNextWeekendHours}</h1>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<h1>Minutes till next weekend: {weekendData.timeTillNextWeekendMinutes}</h1>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<h1>Seconds till next weekend: {weekendData.timeTillNextWeekendSeconds}</h1>
-					</Col>
-				</Row>
+				<Form.Group controlId="formBasicSelect">
+					<Form.Label>Your weekend starts on:</Form.Label>
+					<Form.Control as="select" value={dayOfTheWeek} onChange={handleDayOfTheWeekChanged}>
+						<option value="6">Saturday</option>
+						<option value="0">Sunday</option>
+						<option value="5">Friday</option>
+					</Form.Control>
+				</Form.Group>
+				<Timer dayOfTheWeek={dayOfTheWeek} />
 			</Row>
 		</Container>
 	);
