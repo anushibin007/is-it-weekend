@@ -52,8 +52,9 @@ function App() {
 		<Container className="fill">
 			<Row className="align-items-center" style={{ height: "100vh" }}>
 				<Row>
-					<Col className="align-self-center">
-						<h1 id="nextWeekend">Next weekend is on: {weekendData.nextWeekend && weekendData.nextWeekend.toLocaleString()}</h1>
+					<Col>
+						<h1>Next weekend is on:</h1>
+						<h1>{weekendData.nextWeekend && weekendData.nextWeekend.toLocaleString()}</h1>
 					</Col>
 				</Row>
 				<Row>
