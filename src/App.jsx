@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./App.css";
 import dayjs from "dayjs";
+import Firebase from "./Firebase";
 
 function App() {
 	const [weekendData, setWeekendData] = useState({});
@@ -11,6 +12,7 @@ function App() {
 
 	useEffect(() => {
 		setTimeTillNextWeekend();
+		Firebase.init();
 	}, []);
 
 	useEffect(() => {
