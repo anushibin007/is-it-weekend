@@ -1,10 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Form, Col, Accordion, Card } from "react-bootstrap";
 import "./App.css";
 import Timer from "./components/Timer";
 
 function App() {
-	const [dayOfTheWeek, setDayOfTheWeek] = useState(6);
+	const loadDayOfTheWeek = () => {
+		const localDayOfTheWeek = localStorage.getItem("dayOfTheWeek");
+		try {
+			if (localDayOfTheWeek) {
+				return parseInt(localDayOfTheWeek);
+			}
+		} catch (err) {
+			// Ignore the error. Simply send the default dayOfTheWeek
+		}
+		return 6; // Saturday is the default
+	};
+
+	const [dayOfTheWeek, setDayOfTheWeek] = useState(loadDayOfTheWeek());
+
+	useEffect(() => {
+		localStorage.setItem("dayOfTheWeek", dayOfTheWeek);
+	}, [dayOfTheWeek]);
 
 	const handleDayOfTheWeekChanged = (e) => {
 		setDayOfTheWeek(e.target.value);
